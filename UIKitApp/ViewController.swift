@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var segmentedControll: UISegmentedControl!
     @IBOutlet var slider: UISlider!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
     
     @IBAction func doneButtonPressed() {
         guard let inputText = textField.text, !inputText.isEmpty else {
-            showAlert(with: "Text field is empty", and: "Please enter you name")
+            showAlert(with: "Text field is empty", and: "Please enter your name")
             return
         }
         
@@ -70,6 +71,15 @@ class ViewController: UIViewController {
         }
         
         mainLabel.text = inputText
+    }
+    
+    @IBAction func datePickerAction() {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "ru_UA")
+        
+        mainLabel.text = dateFormatter.string(from: datePicker.date)
     }
     
 }
